@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://xf7i50mgnjds"]
+
+[ext_resource type="Script" uid="uid://bl7w2m3n3aay1" path="res://objects/astroid/astroid.gd" id="1_3w65k"]
+[ext_resource type="Script" uid="uid://dlv45gjc4lpnp" path="res://objects/astroid/health.gd" id="2_axqxm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w65k"]
+radius = 26.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w65k"]
+bg_color = Color(0.74509805, 0, 0.08627451, 0.05882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axqxm"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Astroid" type="Area2D" unique_id=1655164245]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_3w65k")
+
+[node name="Poly" type="Polygon2D" parent="." unique_id=1840681451]
+polygon = PackedVector2Array(0, 29, 8, 25, 14, 26, 20, 24, 19, 18, 17, 12, 27, 2, 33, -2, 30, -7, 24, -13, 17, -14, 13, -17, 8, -22, 2, -24, -8, -23, -16, -25, -21, -19, -23, -9, -24, -4, -19, 4, -22, 10, -29, 14, -22, 25, -13, 31)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=396800661]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_3w65k")
+
+[node name="Health" type="Node2D" parent="." unique_id=2103726470]
+script = ExtResource("2_axqxm")
+
+[node name="HealthBar" type="ProgressBar" parent="Health" unique_id=1094744923]
+offset_left = -13.0
+offset_top = -32.0
+offset_right = 13.0
+offset_bottom = -31.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3w65k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_axqxm")
+value = 100.0
+show_percentage = false
