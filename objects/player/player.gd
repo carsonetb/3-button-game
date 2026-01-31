@@ -1,27 +1,35 @@
 class_name Player
 extends Area2D
 
-const ACCEL: float = 10.0 ## px/s/s
-const RACCEL: float = 10.0 ## deg/s/s
-const RFRIC: float = 4.0 ## deg/s/s
+const ACCEL: float = 100.0 ## px/s/s
+const FRIC: float = 0.1
+const RACCEL: float = 600.0 ## deg/s/s
+const RFRIC: float = 600.0 ## deg/s/s
 
-var vel := Vector2.ZERO
-var rvel := 0.0
+var velocity := Vector2.ZERO
+var rot_vel := 0.0
+
+var direction: Vector2:
+	get:
+		return Vector2.from_angle(rotation)
+	set(val):
+		rotation = val.angle()
 
 @onready var input: PlayerInput = $Input
+@onready var weapons: PlayerWeapons = $Weapons
 
 func _process(delta: float) -> void:
-	var direction := Vector2.from_angle(rotation)
-	
 	if input.accelerating:
-		vel += direction * ACCEL * delta
+		velocity += direction * ACCEL * delta
+	else:
+		velocity *= FRIC * delta
 	
 	if input.turning:
-		rvel += deg_to_rad(RACCEL) * delta
-	elif rvel > 0.0:
-		rvel -= deg_to_rad(RFRIC) * delta 
+		rot_vel += deg_to_rad(RACCEL) * delta
+	elif rot_vel > 0.0:
+		rot_vel -= deg_to_rad(RFRIC) * delta 
 	else:
-		rvel = 0.0
+		rot_vel = 0.0
 	
-	position += vel * delta
-	rotation += rvel * delta
+	position += velocity * delta
+	rotation += rot_vel * delta

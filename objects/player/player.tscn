@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bh6uqjn50sxf2"]
 
 [ext_resource type="Script" uid="uid://dqf5u711dgwv0" path="res://objects/player/player.gd" id="1_cqmt1"]
-[ext_resource type="Script" uid="uid://c625yq5pcv01d" path="res://objects/player/player_input.gd" id="2_g7ett"]
+[ext_resource type="Script" uid="uid://c625yq5pcv01d" path="res://objects/player/input.gd" id="2_g7ett"]
+[ext_resource type="Script" uid="uid://b0daf1j7rtb58" path="res://objects/player/weapons.gd" id="3_ssrue"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7ett"]
 
@@ -29,6 +30,14 @@ polygon = PackedVector2Array(-1, -6, -5, -4, -2, -4)
 position = Vector2(0, 3)
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_g7ett")
+
+[node name="Weapons" type="Node2D" parent="." unique_id=1487935776]
+script = ExtResource("3_ssrue")
+metadata/_custom_type_script = "uid://b0daf1j7rtb58"
+
+[node name="Shoot" type="Timer" parent="Weapons" unique_id=379784294]
+wait_time = 0.1
+one_shot = true
 
 [node name="Input" type="Node" parent="." unique_id=689808548]
 script = ExtResource("2_g7ett")
