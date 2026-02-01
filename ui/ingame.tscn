@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b3gfqb6ru7bf0"]
+
+[ext_resource type="Script" uid="uid://dv5lb01bg5b4q" path="res://ui/ingame.gd" id="1_42h3q"]
+
+[node name="IngameUI" type="CanvasLayer" unique_id=490631448]
+layer = 2
+follow_viewport_enabled = true
+script = ExtResource("1_42h3q")
+
+[node name="Pause" type="Control" parent="." unique_id=116489588]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Pause" unique_id=802701682]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 231.0
+offset_right = 642.0
+offset_bottom = 254.0
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Pause" unique_id=815248981]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 260.0
+offset_right = 620.0
+offset_bottom = 291.0
+focus_neighbor_top = NodePath("../../Death/Exit")
+focus_neighbor_bottom = NodePath("../../Death/Exit")
+text = "Resume"
+
+[node name="Exit" type="Button" parent="Pause" unique_id=1558263789]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 299.0
+offset_right = 642.0
+offset_bottom = 330.0
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Resume")
+text = "Exit to Menu"
+
+[node name="Death" type="Control" parent="." unique_id=1147627743]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Death" unique_id=1965870072]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 231.0
+offset_right = 617.0
+offset_bottom = 254.0
+text = "You Died!"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="Death" unique_id=1029308833]
+layout_mode = 0
+offset_left = 534.0
+offset_top = 260.0
+offset_right = 630.0
+offset_bottom = 291.0
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Exit")
+mouse_filter = 2
+text = "Restart"
+
+[node name="Exit" type="Button" parent="Death" unique_id=2131685875]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 301.0
+offset_right = 637.0
+offset_bottom = 332.0
+focus_neighbor_top = NodePath("../Restart")
+focus_neighbor_bottom = NodePath("../Restart")
+mouse_filter = 2
+text = "Exit To Menu"
+
+[connection signal="pressed" from="Pause/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Death/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Death/Exit" to="." method="_on_exit_pressed"]
