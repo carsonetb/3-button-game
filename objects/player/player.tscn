@@ -10,6 +10,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7ett"]
 
 [node name="Player" type="Area2D" unique_id=386925563]
+collision_mask = 4
 script = ExtResource("1_cqmt1")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=5812171 node_paths=PackedStringArray("lives_start")]
@@ -17,11 +18,15 @@ follow_viewport_enabled = true
 script = ExtResource("2_gnkmh")
 life_icon = ExtResource("5_xkryw")
 lives_start = NodePath("Marker2D")
-icon_separation = 69.884
 start_lives = 4
 
 [node name="Marker2D" type="Marker2D" parent="HUD" unique_id=1241167893]
 position = Vector2(39, 39)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=875872024]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_g7ett")
 
 [node name="Texture" type="Node2D" parent="." unique_id=2021200006]
 rotation = 1.5707964
@@ -38,11 +43,6 @@ scale = Vector2(-1, 1)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-1, -6, -5, -4, -2, -4)
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=875872024]
-position = Vector2(0, 3)
-rotation = 1.5707964
-shape = SubResource("CircleShape2D_g7ett")
-
 [node name="Weapons" type="Node2D" parent="." unique_id=1487935776]
 script = ExtResource("3_ssrue")
 metadata/_custom_type_script = "uid://b0daf1j7rtb58"
@@ -54,9 +54,17 @@ one_shot = true
 [node name="Input" type="Node" parent="." unique_id=689808548]
 script = ExtResource("2_g7ett")
 
-[node name="Health" type="Node" parent="." unique_id=1644710002]
+[node name="Health" type="Node" parent="." unique_id=1864283151]
 script = ExtResource("6_xkryw")
-metadata/_custom_type_script = "uid://cw0487xd5n7hi"
 
-[node name="Invincibility" type="Timer" parent="Health" unique_id=1831805794]
+[node name="Invincibility" type="Timer" parent="Health" unique_id=1301343270]
+wait_time = 2.0
 one_shot = true
+
+[node name="DamagedVisibility" type="Timer" parent="." unique_id=1126080756]
+wait_time = 0.05
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
+[connection signal="timeout" from="Health/Invincibility" to="Health" method="_on_invincibility_timeout"]
+[connection signal="timeout" from="DamagedVisibility" to="." method="_on_damaged_visibility_timeout"]

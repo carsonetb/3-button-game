@@ -24,5 +24,3 @@ func _process(delta: float) -> void:
 	
 	if shoot_toggle.process(delta, [Input.is_action_just_pressed(&"left"), Input.is_action_just_pressed(&"right")]):
 		shooting = !shooting
-	
-	print(shoot_toggle._button_timers)

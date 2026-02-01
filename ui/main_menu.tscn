@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dbijcwoy7y16m"]
+
+[ext_resource type="Script" uid="uid://iruslbr6r0tp" path="res://ui/main_menu.gd" id="1_t7e0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0q7"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_0dkrt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Selector:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(154, 82)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Selector:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(494, 299)]
+}
+
+[sub_resource type="Animation" id="Animation_wk0pr"]
+resource_name = "select_start"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Selector:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(135, 82), Vector2(156, 82)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Selector:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(509, 364), Vector2(496, 300)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmr83"]
+_data = {
+&"RESET": SubResource("Animation_0dkrt"),
+&"select_start": SubResource("Animation_wk0pr")
+}
+
+[node name="MainMenu" type="Node2D" unique_id=340738033]
+script = ExtResource("1_t7e0r")
+
+[node name="Start" type="Label" parent="." unique_id=2080041218]
+offset_top = 304.0
+offset_right = 1151.0
+offset_bottom = 369.0
+theme_override_font_sizes/font_size = 47
+text = "Start"
+horizontal_alignment = 1
+
+[node name="Exit" type="Label" parent="." unique_id=163145990]
+offset_top = 368.0
+offset_right = 1151.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 47
+text = "Exit"
+horizontal_alignment = 1
+
+[node name="Selector" type="Panel" parent="." unique_id=99563192]
+offset_left = 494.0
+offset_top = 299.0
+offset_right = 648.0
+offset_bottom = 381.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gl0q7")
+
+[node name="SelectorAnimator" type="AnimationPlayer" parent="." unique_id=1470351968]
+libraries/ = SubResource("AnimationLibrary_rmr83")
+autoplay = &"RESET"

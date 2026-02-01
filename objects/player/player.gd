@@ -14,11 +14,21 @@ var movement_direction: Vector2:
 	get:
 		return velocity.normalized()
 
-@onready var input: PlayerInput = $Input
-@onready var weapons: PlayerWeapons = $Weapons
 @onready var hud: PlayerHUD = $HUD
+@onready var weapons: PlayerWeapons = $Weapons
+@onready var input: PlayerInput = $Input
+@onready var health: PlayerHealth = $Health
+
+@onready var visibility_timer: Timer = $DamagedVisibility
+
+func _ready() -> void:
+	await health.died
+	
+	queue_free()
 
 func _process(delta: float) -> void:
+	# -- Movement --
+	
 	if input.accelerating:
 		velocity += input.accel_force * direction * Constants.PLAYER_ACCEL * delta
 	else:
@@ -36,6 +46,21 @@ func _process(delta: float) -> void:
 	
 	position += velocity * delta
 	rotation += rot_vel * delta
+	
+	# -- Animation --
+	
+	if !health.invincible && !visibility_timer.is_stopped():
+		visibility_timer.stop()
+		visible = true
+
+func _on_area_entered(area: Area2D) -> void:
+	health.damage()
+
+func _on_health_damaged(new_health: int) -> void:
+	visibility_timer.start()
+
+func _on_damaged_visibility_timeout() -> void:
+	visible = !visible
 
 static func create(direction: Vector2 = Vector2.ZERO) -> Player:
 	var packed: PackedScene = load("uid://bh6uqjn50sxf2")

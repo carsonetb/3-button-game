@@ -14,6 +14,11 @@ func _ready() -> void:
 	player = Player.create()
 	add_child(player)
 	player.position = Util.pick_control_point(spawn_bounds)
+	
+	await player.health.died
+	await get_tree().process_frame
+	
+	get_tree().reload_current_scene()
 
 func _on_astroid_timer_timeout() -> void:
 	var segment: int = randi_range(0, astroid_spawn.points.size() - 1)
