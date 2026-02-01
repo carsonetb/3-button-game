@@ -36,3 +36,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_3w65k")
 theme_override_styles/fill = SubResource("StyleBoxFlat_axqxm")
 value = 100.0
 show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

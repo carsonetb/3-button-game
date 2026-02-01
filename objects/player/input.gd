@@ -5,38 +5,24 @@ signal pause_pressed
 
 const PAUSE_TOLERANCE = 0.2 ## seconds
 
-var accelerating: bool = false 
+var accel_force: float = 0.0
+var accelerating: bool = false
+var turn_force: float = 0.0
 var turning: bool = false
 var shooting: bool = false
+var pause_button: MultiButton = MultiButton.new(3)
+var shoot_toggle: MultiButton = MultiButton.new(2, 0.05)
 
-var w_timer: Timer 
-var d_timer: Timer 
-var space_timer: Timer
-
-func _ready() -> void:
-	w_timer = Timer.new()
-	d_timer = Timer.new()
-	space_timer = Timer.new()
-	add_child(w_timer)
-	add_child(d_timer)
-	add_child(space_timer)
-
-func _process(_delta: float) -> void:
-	accelerating = Input.is_action_pressed(&"accelerate")
-	turning = Input.is_action_pressed(&"turn")
-	shooting = Input.is_action_pressed(&"shoot")
+func _process(delta: float) -> void:
+	accel_force = Input.get_action_strength(&"accelerate")
+	accelerating = abs(accel_force) > 0.0
+	turn_force = Input.get_axis(&"left", &"right")
+	turning = abs(turn_force) > 0.0
 	
-	var input_just_pressed := false 
-	if Input.is_action_just_pressed(&"accelerate"):
-		w_timer.start(PAUSE_TOLERANCE)
-		input_just_pressed = true
-	if Input.is_action_just_pressed(&"turn"):
-		d_timer.start(PAUSE_TOLERANCE)
-		input_just_pressed = true 
-	if Input.is_action_just_pressed(&"shoot"):
-		space_timer.start(PAUSE_TOLERANCE)
-		input_just_pressed = true 
-	
-	if input_just_pressed && !(w_timer.is_stopped() || d_timer.is_stopped() || space_timer.is_stopped()):
-		print("(PlayerInput) Pause pressed")
+	if pause_button.process(delta, [Input.is_action_just_pressed(&"left"), Input.is_action_just_pressed(&"right"), Input.is_action_just_pressed(&"accelerate")]):
 		pause_pressed.emit()
+	
+	if shoot_toggle.process(delta, [Input.is_action_just_pressed(&"left"), Input.is_action_just_pressed(&"right")]):
+		shooting = !shooting
+	
+	print(shoot_toggle._button_timers)

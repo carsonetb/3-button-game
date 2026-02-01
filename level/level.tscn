@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://nj834utfqy6y"]
+
+[ext_resource type="Script" uid="uid://8cywugixx26y" path="res://level/level.gd" id="1_7lnir"]
+
+[node name="Level" type="Node2D" unique_id=248361577]
+script = ExtResource("1_7lnir")
+
+[node name="BoundingBox" type="ColorRect" parent="." unique_id=551164407]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.26330742, 0.42935717, 1, 0.09803922)
+
+[node name="SpawnBox" type="ColorRect" parent="." unique_id=1698430887]
+offset_left = 351.0
+offset_top = 167.0
+offset_right = 832.0
+offset_bottom = 478.0
+color = Color(0.725943, 0.10885731, 0.27744344, 0.20392157)
+
+[node name="AstroidSpawn" type="Line2D" parent="." unique_id=2019910945]
+points = PackedVector2Array(1215, -52, 1214, 720, -74, 710, -78, -48)
+closed = true
+
+[node name="AstroidTimer" type="Timer" parent="." unique_id=1742209031]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="AstroidTimer" to="." method="_on_astroid_timer_timeout"]

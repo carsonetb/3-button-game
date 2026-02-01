@@ -2,14 +2,26 @@
 
 [ext_resource type="Script" uid="uid://dqf5u711dgwv0" path="res://objects/player/player.gd" id="1_cqmt1"]
 [ext_resource type="Script" uid="uid://c625yq5pcv01d" path="res://objects/player/input.gd" id="2_g7ett"]
+[ext_resource type="Script" uid="uid://b43l223oirh6b" path="res://objects/player/hud.gd" id="2_gnkmh"]
 [ext_resource type="Script" uid="uid://b0daf1j7rtb58" path="res://objects/player/weapons.gd" id="3_ssrue"]
+[ext_resource type="Texture2D" uid="uid://dtpvatgjn4otu" path="res://objects/player/life.png" id="5_xkryw"]
+[ext_resource type="Script" uid="uid://cw0487xd5n7hi" path="res://objects/player/health.gd" id="6_xkryw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7ett"]
 
 [node name="Player" type="Area2D" unique_id=386925563]
 script = ExtResource("1_cqmt1")
 
-[node name="Camera" type="Camera2D" parent="." unique_id=1056175147]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=5812171 node_paths=PackedStringArray("lives_start")]
+follow_viewport_enabled = true
+script = ExtResource("2_gnkmh")
+life_icon = ExtResource("5_xkryw")
+lives_start = NodePath("Marker2D")
+icon_separation = 69.884
+start_lives = 4
+
+[node name="Marker2D" type="Marker2D" parent="HUD" unique_id=1241167893]
+position = Vector2(39, 39)
 
 [node name="Texture" type="Node2D" parent="." unique_id=2021200006]
 rotation = 1.5707964
@@ -42,4 +54,9 @@ one_shot = true
 [node name="Input" type="Node" parent="." unique_id=689808548]
 script = ExtResource("2_g7ett")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=5812171]
+[node name="Health" type="Node" parent="." unique_id=1644710002]
+script = ExtResource("6_xkryw")
+metadata/_custom_type_script = "uid://cw0487xd5n7hi"
+
+[node name="Invincibility" type="Timer" parent="Health" unique_id=1831805794]
+one_shot = true
