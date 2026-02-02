@@ -2,9 +2,33 @@
 
 [ext_resource type="Script" uid="uid://8cywugixx26y" path="res://level/level.gd" id="1_7lnir"]
 [ext_resource type="PackedScene" uid="uid://b3gfqb6ru7bf0" path="res://ui/ingame.tscn" id="2_5gx2l"]
+[ext_resource type="Script" uid="uid://cbeoptvlu4nx4" path="res://resources/phase.gd" id="2_qohg2"]
+[ext_resource type="Script" uid="uid://cw7swj2a2avhq" path="res://resources/units/seconds.gd" id="3_ktfr2"]
+[ext_resource type="Script" uid="uid://b315rtqgv5yb3" path="res://resources/units/minutes.gd" id="4_44x8d"]
+
+[sub_resource type="Resource" id="Resource_ivpvi"]
+resource_name = "3 seconds"
+script = ExtResource("3_ktfr2")
+value = 3.0
+metadata/_custom_type_script = "uid://cw7swj2a2avhq"
+
+[sub_resource type="Resource" id="Resource_0v1st"]
+resource_name = "1 minute"
+script = ExtResource("4_44x8d")
+value = 1.0
+metadata/_custom_type_script = "uid://b315rtqgv5yb3"
+
+[sub_resource type="Resource" id="Resource_vkbyq"]
+resource_name = "Phase 1: 2 minutes"
+script = ExtResource("2_qohg2")
+name = "Phase 1"
+time = SubResource("Resource_0v1st")
+spawn_interval = SubResource("Resource_ivpvi")
+metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
 
 [node name="Level" type="Node2D" unique_id=248361577]
 script = ExtResource("1_7lnir")
+phases = Array[ExtResource("2_qohg2")]([SubResource("Resource_vkbyq")])
 
 [node name="UI" parent="." unique_id=490631448 instance=ExtResource("2_5gx2l")]
 

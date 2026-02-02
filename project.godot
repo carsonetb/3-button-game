@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Scenes="*uid://igomf0pcoi2y"
-UpgradeDB="*uid://c2u0v7woy1s32"
+UpgradeDB="*uid://yq01gtplotbv"
 
 [debug]
 

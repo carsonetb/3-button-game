@@ -16,6 +16,9 @@ signal upgrade_selected(upgrade_name: String)
 @onready var back_button: Button = $Upgrades/Back
 @onready var upgrades_container: VBoxContainer = $Upgrades/Container
 
+@onready var popup_animation: AnimationPlayer = $Popup/Animation
+@onready var popup_label: Label = $Popup/Text
+
 func _ready() -> void:
 	hide_menus()
 
@@ -29,6 +32,7 @@ func set_upgrades(upgrades: Array[Upgrade], money: int) -> void:
 		button.text = str(upgrade)
 		button.disabled = money < upgrade.cost
 		button.pressed.connect(_on_upgrade_pressed.bind(upgrade.name))
+		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		upgrades_container.add_child(button)
 	
 	var children := upgrades_container.get_children()
@@ -49,6 +53,10 @@ func set_upgrades(upgrades: Array[Upgrade], money: int) -> void:
 	else:
 		back_button.focus_neighbor_top = back_button.get_path_to(children[children.size() - 1])
 		back_button.focus_neighbor_bottom = back_button.get_path_to(children[0])
+
+func display_popup(text: String) -> void:
+	popup_label.text = text 
+	popup_animation.play(&"display_popup")
 
 func display_death() -> void:
 	hide_menus()

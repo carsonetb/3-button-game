@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://yq01gtplotbv"]
+
+[ext_resource type="Script" uid="uid://c2u0v7woy1s32" path="res://global/upgrade_db.gd" id="1_g1ke0"]
+[ext_resource type="Script" uid="uid://dsjfcfdynyr35" path="res://resources/upgrade.gd" id="2_jcm7f"]
+[ext_resource type="Resource" uid="uid://dg5c7q1c0wrl3" path="res://resources/modifiers/shield/first.tres" id="3_vvo6f"]
+[ext_resource type="Resource" uid="uid://bq5fv62g8j8ge" path="res://resources/modifiers/shield/second.tres" id="4_wyofw"]
+[ext_resource type="Resource" uid="uid://ca48mb1gln3n6" path="res://resources/modifiers/shield/third.tres" id="5_vvo6f"]
+
+[sub_resource type="Resource" id="Resource_wyofw"]
+resource_name = "$300 -> []"
+script = ExtResource("2_jcm7f")
+name = "shield_10%"
+modifier = ExtResource("5_vvo6f")
+cost = 300
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_mygjp"]
+resource_name = "$500 -> []"
+script = ExtResource("2_jcm7f")
+name = "shield_2x"
+modifier = ExtResource("4_wyofw")
+cost = 500
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_uxxws"]
+resource_name = "$100 -> [\"shield_2x\", \"shield_10%\"]"
+script = ExtResource("2_jcm7f")
+name = "shield_first"
+modifier = ExtResource("3_vvo6f")
+cost = 100
+unlocks = Array[String](["shield_2x", "shield_10%"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[node name="UpgradeDB" type="Node" unique_id=353082770]
+script = ExtResource("1_g1ke0")
+start_upgrades = Array[String](["shield_first"])
+upgrades = Dictionary[String, ExtResource("2_jcm7f")]({
+"shield_10%": SubResource("Resource_wyofw"),
+"shield_2x": SubResource("Resource_mygjp"),
+"shield_first": SubResource("Resource_uxxws")
+})

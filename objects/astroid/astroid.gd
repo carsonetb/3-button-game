@@ -2,6 +2,7 @@ class_name Astroid
 extends Area2D 
 
 signal hit
+signal destroyed(money: int)
 
 var velocity: Vector2 = Vector2.ZERO 
 var rot_vel: float = 0.0
@@ -12,9 +13,11 @@ func _ready() -> void:
 	scale *= randf_range(Constants.ASTROID_MIN_SCALE, Constants.ASTROID_MAX_SCALE)
 	rotation = randf_range(0.0, TAU)
 	rot_vel = randf_range(0.0, deg_to_rad(Constants.ASTROID_MAX_ROT_VEL))
+	var worth := (scale.length() - 0.4) * 20.0
 	
 	await health.died 
 	
+	destroyed.emit(worth)
 	queue_free()
 
 func _process(delta: float) -> void:

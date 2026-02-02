@@ -1,11 +1,9 @@
 class_name PlayerUpgrades
 extends Node
 
-@export var start_money: int
-
 var available: Dictionary[String, Upgrade] = {}
 
-@onready var money: int = start_money
+@onready var money: int = 0
 @onready var player: Player = get_parent()
 
 func _ready() -> void:

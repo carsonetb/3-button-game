@@ -15,6 +15,11 @@ extends CanvasLayer
 		if Engine.is_editor_hint():
 			set_lives(start_lives)
 
+@onready var money_text: Label = $Money
+
+func _ready() -> void:
+	set_lives(start_lives)
+
 func set_lives(amount: int) -> void:
 	for child in get_children():
 		if child is Sprite2D:
@@ -25,3 +30,6 @@ func set_lives(amount: int) -> void:
 		sprite.texture = life_icon
 		add_child(sprite)
 		sprite.position = lives_start.position + Vector2(i * icon_separation, 0.0)
+
+func set_money(amount: float) -> void:
+	money_text.text = "Money: {0}".format([int(amount)])

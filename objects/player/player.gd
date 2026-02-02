@@ -54,6 +54,8 @@ func _process(delta: float) -> void:
 	if !health.invincible && !visibility_timer.is_stopped():
 		visibility_timer.stop()
 		visible = true
+	
+	hud.set_money(upgrades.money)
 
 func _on_area_entered(area: Area2D) -> void:
 	health.damage()

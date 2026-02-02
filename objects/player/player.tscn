@@ -20,10 +20,17 @@ follow_viewport_enabled = true
 script = ExtResource("2_gnkmh")
 life_icon = ExtResource("5_xkryw")
 lives_start = NodePath("Marker2D")
-start_lives = 4
+icon_separation = 80.025
 
 [node name="Marker2D" type="Marker2D" parent="HUD" unique_id=1241167893]
 position = Vector2(39, 39)
+
+[node name="Money" type="Label" parent="HUD" unique_id=1093209473]
+offset_left = 11.0
+offset_top = 78.0
+offset_right = 51.0
+offset_bottom = 101.0
+text = "Money: 0"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=875872024]
 position = Vector2(0, 3)
@@ -65,7 +72,6 @@ one_shot = true
 
 [node name="Upgrades" type="Node" parent="." unique_id=1156169233]
 script = ExtResource("7_ow0dq")
-start_money = 20
 
 [node name="Shields" type="Node" parent="." unique_id=744015933]
 script = ExtResource("8_m4kly")
