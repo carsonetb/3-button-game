@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dtpvatgjn4otu" path="res://objects/player/life.png" id="5_xkryw"]
 [ext_resource type="Script" uid="uid://cw0487xd5n7hi" path="res://objects/player/health.gd" id="6_xkryw"]
 [ext_resource type="Script" uid="uid://dhnk157d00b32" path="res://objects/player/upgrades.gd" id="7_ow0dq"]
+[ext_resource type="Script" uid="uid://cr2673ximcypn" path="res://objects/player/shields.gd" id="8_m4kly"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7ett"]
 
@@ -64,6 +65,13 @@ one_shot = true
 
 [node name="Upgrades" type="Node" parent="." unique_id=1156169233]
 script = ExtResource("7_ow0dq")
+start_money = 20
+
+[node name="Shields" type="Node" parent="." unique_id=744015933]
+script = ExtResource("8_m4kly")
+
+[node name="Recharge" type="Timer" parent="Shields" unique_id=2090502337]
+one_shot = true
 
 [node name="DamagedVisibility" type="Timer" parent="." unique_id=1126080756]
 wait_time = 0.05
@@ -71,4 +79,5 @@ wait_time = 0.05
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="timeout" from="Health/Invincibility" to="Health" method="_on_invincibility_timeout"]
+[connection signal="timeout" from="Shields/Recharge" to="Shields" method="_on_recharge_timeout"]
 [connection signal="timeout" from="DamagedVisibility" to="." method="_on_damaged_visibility_timeout"]

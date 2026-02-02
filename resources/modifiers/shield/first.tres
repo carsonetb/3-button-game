@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ShieldModifier" format=3 uid="uid://dg5c7q1c0wrl3"]
+
+[ext_resource type="Script" uid="uid://djn1ef8fxdjj8" path="res://resources/modifiers/shield/shield.gd" id="1_o80s5"]
+
+[resource]
+script = ExtResource("1_o80s5")
+recharge_time = 10.0
+metadata/_custom_type_script = "uid://djn1ef8fxdjj8"

@@ -54,3 +54,4 @@ func _on_ui_request_upgrades() -> void:
 
 func _on_ui_upgrade_selected(upgrade_name: String) -> void:
 	player.upgrades.upgrade(upgrade_name)
+	_on_ui_request_upgrades()

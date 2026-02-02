@@ -19,6 +19,8 @@ func _ready() -> void:
 func damage() -> void:
 	if !invincibility_timer.is_stopped():
 		return
+	if player.shields.consume(1) == 0:
+		return
 	health -= 1
 	player.hud.set_lives(health)
 	invincible = true

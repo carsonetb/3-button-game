@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ShieldModifier" format=3 uid="uid://bq5fv62g8j8ge"]
+
+[ext_resource type="Script" uid="uid://djn1ef8fxdjj8" path="res://resources/modifiers/shield/shield.gd" id="1_epdkv"]
+
+[resource]
+script = ExtResource("1_epdkv")
+absorption = 2
+recharge_time = 10.0
+metadata/_custom_type_script = "uid://djn1ef8fxdjj8"

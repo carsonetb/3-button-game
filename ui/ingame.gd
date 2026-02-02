@@ -21,13 +21,14 @@ func _ready() -> void:
 
 func set_upgrades(upgrades: Array[Upgrade], money: int) -> void:
 	for child in upgrades_container.get_children():
+		upgrades_container.remove_child(child)
 		child.queue_free()
 	
 	for upgrade: Upgrade in upgrades:
 		var button: Button = Button.new()
 		button.text = str(upgrade)
 		button.disabled = money < upgrade.cost
-		button.pressed.connect(upgrade_selected.emit.bind(upgrade.name))
+		button.pressed.connect(_on_upgrade_pressed.bind(upgrade.name))
 		upgrades_container.add_child(button)
 	
 	var children := upgrades_container.get_children()
@@ -46,8 +47,8 @@ func set_upgrades(upgrades: Array[Upgrade], money: int) -> void:
 		back_button.focus_neighbor_top = ^"."
 		back_button.focus_neighbor_bottom = ^"."
 	else:
-		back_button.focus_neighbor_top = back_button.get_path_to(children[0])
-		back_button.focus_neighbor_bottom = back_button.get_path_to(children[children.size() - 1])
+		back_button.focus_neighbor_top = back_button.get_path_to(children[children.size() - 1])
+		back_button.focus_neighbor_bottom = back_button.get_path_to(children[0])
 
 func display_death() -> void:
 	hide_menus()
@@ -68,6 +69,10 @@ func hide_menus() -> void:
 	death_menu.visible = false 
 	pause_menu.visible = false
 	upgrades_menu.visible = false
+
+func _on_upgrade_pressed(upgrade_name: String) -> void:
+	upgrade_selected.emit(upgrade_name)
+	back_button.grab_focus()
 
 func _on_exit_pressed() -> void:
 	exit.emit()

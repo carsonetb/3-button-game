@@ -95,6 +95,7 @@ mouse_filter = 2
 text = "Exit To Menu"
 
 [node name="Upgrades" type="Control" parent="." unique_id=224218974]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -119,9 +120,9 @@ text = "Back"
 
 [node name="Container" type="VBoxContainer" parent="Upgrades" unique_id=1109934049]
 layout_mode = 0
-offset_left = 504.0
+offset_left = 426.0
 offset_top = 294.0
-offset_right = 658.0
+offset_right = 741.0
 offset_bottom = 455.0
 
 [connection signal="pressed" from="Pause/Resume" to="." method="_on_resume_pressed"]
