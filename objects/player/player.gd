@@ -18,6 +18,7 @@ var movement_direction: Vector2:
 @onready var weapons: PlayerWeapons = $Weapons
 @onready var input: PlayerInput = $Input
 @onready var health: PlayerHealth = $Health
+@onready var upgrades: PlayerUpgrades = $Upgrades
 
 @onready var visibility_timer: Timer = $DamagedVisibility
 

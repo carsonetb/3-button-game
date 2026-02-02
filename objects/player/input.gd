@@ -14,13 +14,19 @@ var pause_button: MultiButton = MultiButton.new(3)
 var shoot_toggle: MultiButton = MultiButton.new(2, 0.05)
 
 func _process(delta: float) -> void:
+	
 	accel_force = Input.get_action_strength(&"accelerate")
 	accelerating = abs(accel_force) > 0.0
 	turn_force = Input.get_axis(&"left", &"right")
 	turning = abs(turn_force) > 0.0
 	
-	if pause_button.process(delta, [Input.is_action_just_pressed(&"left"), Input.is_action_just_pressed(&"right"), Input.is_action_just_pressed(&"accelerate")]):
-		pause_pressed.emit()
+	var left_pressed := Input.is_action_just_pressed(&"left")
+	var right_presed := Input.is_action_just_pressed(&"right")
 	
-	if shoot_toggle.process(delta, [Input.is_action_just_pressed(&"left"), Input.is_action_just_pressed(&"right")]):
+	if pause_button.process(delta, [left_pressed, right_presed, Input.is_action_just_pressed(&"accelerate")]):
+		pause_pressed.emit()
+		left_pressed = false 
+		right_presed = false
+	
+	if shoot_toggle.process(delta, [left_pressed, right_presed]):
 		shooting = !shooting

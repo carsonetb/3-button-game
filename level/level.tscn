@@ -6,7 +6,7 @@
 [node name="Level" type="Node2D" unique_id=248361577]
 script = ExtResource("1_7lnir")
 
-[node name="IngameUI" parent="." unique_id=490631448 instance=ExtResource("2_5gx2l")]
+[node name="UI" parent="." unique_id=490631448 instance=ExtResource("2_5gx2l")]
 
 [node name="BoundingBox" type="ColorRect" parent="." unique_id=551164407]
 offset_right = 1152.0
@@ -28,4 +28,8 @@ closed = true
 wait_time = 3.0
 autostart = true
 
+[connection signal="exit" from="UI" to="." method="_on_ui_exit"]
+[connection signal="request_upgrades" from="UI" to="." method="_on_ui_request_upgrades"]
+[connection signal="resume" from="UI" to="." method="_on_ui_resume"]
+[connection signal="upgrade_selected" from="UI" to="." method="_on_ui_upgrade_selected"]
 [connection signal="timeout" from="AstroidTimer" to="." method="_on_astroid_timer_timeout"]

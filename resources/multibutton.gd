@@ -4,7 +4,7 @@ var _num_buttons: int = 0
 var _button_timers: Array[float]
 var threshold: float = 0.2
 
-func _init(num: int, thresh: float = 0.2) -> void:
+func _init(num: int, thresh: float = 0.1) -> void:
 	_num_buttons = num 
 	_button_timers.resize(num)
 	threshold = thresh
