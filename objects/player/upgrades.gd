@@ -15,6 +15,7 @@ func _ready() -> void:
 		available[upgrade_name] = UpgradeDB.upgrades[upgrade_name]
 
 func upgrade(upgrade_name: String) -> void:
+	player.logger.debug("Player purchase upgrade \"{0}\"".format([upgrade_name]))
 	var upgraded: Upgrade = available[upgrade_name]
 	available.erase(upgrade_name)
 	

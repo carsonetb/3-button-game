@@ -19,7 +19,7 @@ value = 1.0
 metadata/_custom_type_script = "uid://b315rtqgv5yb3"
 
 [sub_resource type="Resource" id="Resource_vkbyq"]
-resource_name = "Phase 1: 2 minutes"
+resource_name = "Phase 1: 1 minute"
 script = ExtResource("2_qohg2")
 name = "Phase 1"
 time = SubResource("Resource_0v1st")
@@ -39,7 +39,7 @@ value = 1.0
 metadata/_custom_type_script = "uid://b315rtqgv5yb3"
 
 [sub_resource type="Resource" id="Resource_6gtgk"]
-resource_name = "Phase 2: 0 minutes"
+resource_name = "Phase 2: 1 minute"
 script = ExtResource("2_qohg2")
 name = "Phase 2"
 time = SubResource("Resource_44x8d")

@@ -11,6 +11,7 @@ extends Node2D
 
 var player: Player
 var phase_events: Array
+var logger := DebugLogger.new("Level")
 
 func _ready() -> void:
 	bounds.visible = false 
@@ -20,6 +21,8 @@ func _ready() -> void:
 	add_child(player)
 	player.position = Util.pick_control_point(spawn_bounds)
 	player.input.pause_pressed.connect(_on_ui_pause)
+	
+	logger.initialize()
 	
 	run_phases()
 	
@@ -31,11 +34,13 @@ func _ready() -> void:
 func run_phases() -> void:
 	while !phases.is_empty():
 		var phase: Phase = phases.pop_front()
+		logger.debug("Begin phase \"{0}\".".format([phase.name]))
 		ui.display_popup(phase.name)
 		spawn_timer.wait_time = phase.spawn_interval.in_seconds()
 		phase_events = phase.events
 		await get_tree().create_timer(phase.time.in_seconds()).timeout
 	
+	logger.debug("Phases complete.")
 	ui.display_popup("Phases Complete")
 	spawn_timer.wait_time = INF
 	phase_events = []
@@ -61,13 +66,16 @@ func _on_astroid_timer_timeout() -> void:
 	astroid.position = pos 
 
 func _on_ui_exit() -> void:
+	logger.info("Exit to menu.")
 	get_tree().paused = false 
 	get_tree().change_scene_to_packed(Scenes.main_menu)
 
 func _on_ui_resume() -> void:
+	logger.info("Resume game.")
 	get_tree().paused = false
 
 func _on_ui_pause() -> void:
+	logger.info("Pause game.")
 	pause()
 
 func _on_ui_request_upgrades() -> void:

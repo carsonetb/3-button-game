@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Scenes="*uid://igomf0pcoi2y"
 UpgradeDB="*uid://yq01gtplotbv"
+Logging="*uid://btvptm4cmswl"
 
 [debug]
 
