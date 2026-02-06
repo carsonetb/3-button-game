@@ -4,18 +4,33 @@
 [ext_resource type="Script" uid="uid://c625yq5pcv01d" path="res://objects/player/input.gd" id="2_g7ett"]
 [ext_resource type="Script" uid="uid://b43l223oirh6b" path="res://objects/player/hud.gd" id="2_gnkmh"]
 [ext_resource type="Script" uid="uid://b0daf1j7rtb58" path="res://objects/player/weapons.gd" id="3_ssrue"]
+[ext_resource type="Script" uid="uid://8gdbljdolhai" path="res://objects/player/animation.gd" id="4_bi5m7"]
 [ext_resource type="Texture2D" uid="uid://dtpvatgjn4otu" path="res://objects/player/life.png" id="5_xkryw"]
+[ext_resource type="Texture2D" uid="uid://bed8td3uj1vfx" path="res://objects/player/shield.png" id="6_xgwla"]
 [ext_resource type="Script" uid="uid://cw0487xd5n7hi" path="res://objects/player/health.gd" id="6_xkryw"]
 [ext_resource type="Script" uid="uid://dhnk157d00b32" path="res://objects/player/upgrades.gd" id="7_ow0dq"]
 [ext_resource type="Script" uid="uid://cr2673ximcypn" path="res://objects/player/shields.gd" id="8_m4kly"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g7ett"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bi5m7"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.2
+direction = Vector3(0, 1, 0)
+spread = 20.171
+initial_velocity_min = 335.0
+initial_velocity_max = 335.0
+gravity = Vector3(-500, 0, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 0.06
+turbulence_noise_scale = 6.737
+
 [node name="Player" type="Area2D" unique_id=386925563]
 collision_mask = 4
 script = ExtResource("1_cqmt1")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=5812171 node_paths=PackedStringArray("lives_start")]
+process_mode = 3
 follow_viewport_enabled = true
 script = ExtResource("2_gnkmh")
 life_icon = ExtResource("5_xkryw")
@@ -37,20 +52,30 @@ position = Vector2(0, 3)
 rotation = 1.5707964
 shape = SubResource("CircleShape2D_g7ett")
 
-[node name="Texture" type="Node2D" parent="." unique_id=2021200006]
+[node name="Animation" type="Node2D" parent="." unique_id=2021200006]
 rotation = 1.5707964
+script = ExtResource("4_bi5m7")
 
-[node name="Polygon2D" type="Polygon2D" parent="Texture" unique_id=645147114]
+[node name="Texture" type="Node2D" parent="Animation" unique_id=656356186]
+
+[node name="Polygon2D" type="Polygon2D" parent="Animation/Texture" unique_id=645147114]
 polygon = PackedVector2Array(0, 23, 11, 0, 0, -12, -11, 0)
 
-[node name="Polygon2D2" type="Polygon2D" parent="Texture" unique_id=1555704637]
+[node name="Polygon2D2" type="Polygon2D" parent="Animation/Texture" unique_id=1555704637]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-1, -6, -5, -4, -2, -4)
 
-[node name="Polygon2D3" type="Polygon2D" parent="Texture" unique_id=31480038]
-scale = Vector2(-1, 1)
+[node name="Polygon2D3" type="Polygon2D" parent="Animation/Texture" unique_id=31480038]
+rotation = 3.1415927
+scale = Vector2(1, -1)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-1, -6, -5, -4, -2, -4)
+
+[node name="Boost" type="GPUParticles2D" parent="Animation" unique_id=1431459946]
+position = Vector2(0, 24)
+amount = 100
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_bi5m7")
 
 [node name="Weapons" type="Node2D" parent="." unique_id=1487935776]
 script = ExtResource("3_ssrue")
@@ -59,6 +84,15 @@ metadata/_custom_type_script = "uid://b0daf1j7rtb58"
 [node name="Shoot" type="Timer" parent="Weapons" unique_id=379784294]
 wait_time = 0.1
 one_shot = true
+
+[node name="Shields" type="Node2D" parent="." unique_id=1336055448]
+script = ExtResource("8_m4kly")
+
+[node name="Recharge" type="Timer" parent="Shields" unique_id=2090502337]
+one_shot = true
+
+[node name="Sprite" type="Sprite2D" parent="Shields" unique_id=295170979]
+texture = ExtResource("6_xgwla")
 
 [node name="Input" type="Node" parent="." unique_id=689808548]
 script = ExtResource("2_g7ett")
@@ -73,17 +107,11 @@ one_shot = true
 [node name="Upgrades" type="Node" parent="." unique_id=1156169233]
 script = ExtResource("7_ow0dq")
 
-[node name="Shields" type="Node" parent="." unique_id=744015933]
-script = ExtResource("8_m4kly")
-
-[node name="Recharge" type="Timer" parent="Shields" unique_id=2090502337]
-one_shot = true
-
 [node name="DamagedVisibility" type="Timer" parent="." unique_id=1126080756]
 wait_time = 0.05
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Shields/Recharge" to="Shields" method="_on_recharge_timeout"]
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="timeout" from="Health/Invincibility" to="Health" method="_on_invincibility_timeout"]
-[connection signal="timeout" from="Shields/Recharge" to="Shields" method="_on_recharge_timeout"]
 [connection signal="timeout" from="DamagedVisibility" to="." method="_on_damaged_visibility_timeout"]

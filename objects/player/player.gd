@@ -15,6 +15,7 @@ var movement_direction: Vector2:
 		return velocity.normalized()
 
 @onready var hud: PlayerHUD = $HUD
+@onready var animation: PlayerAnimation = $Animation
 @onready var weapons: PlayerWeapons = $Weapons
 @onready var input: PlayerInput = $Input
 @onready var health: PlayerHealth = $Health
@@ -53,9 +54,10 @@ func _process(delta: float) -> void:
 	
 	if !health.invincible && !visibility_timer.is_stopped():
 		visibility_timer.stop()
-		visible = true
+		animation.sprite_visible = true
 	
 	hud.set_money(upgrades.money)
+	animation.boost_enabled = input.accelerating
 
 func _on_area_entered(area: Area2D) -> void:
 	health.damage()
@@ -64,7 +66,7 @@ func _on_health_damaged(new_health: int) -> void:
 	visibility_timer.start()
 
 func _on_damaged_visibility_timeout() -> void:
-	visible = !visible
+	animation.sprite_visible = !animation.sprite_visible
 
 static func create(direction: Vector2 = Vector2.ZERO) -> Player:
 	var packed: PackedScene = load("uid://bh6uqjn50sxf2")
