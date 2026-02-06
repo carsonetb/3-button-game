@@ -3,6 +3,7 @@ extends Area2D
 
 var velocity := Vector2.ZERO
 var rot_vel := 0.0
+var logger := DebugLogger.new("Player")
 
 var direction: Vector2:
 	get:
@@ -25,6 +26,8 @@ var movement_direction: Vector2:
 @onready var visibility_timer: Timer = $DamagedVisibility
 
 func _ready() -> void:
+	logger.initialize()
+	
 	await health.died
 	
 	queue_free()
