@@ -2,40 +2,152 @@
 
 [ext_resource type="Script" uid="uid://c2u0v7woy1s32" path="res://global/upgrade_db.gd" id="1_g1ke0"]
 [ext_resource type="Script" uid="uid://dsjfcfdynyr35" path="res://resources/upgrade.gd" id="2_jcm7f"]
-[ext_resource type="Resource" uid="uid://dg5c7q1c0wrl3" path="res://resources/modifiers/shield/first.tres" id="3_vvo6f"]
-[ext_resource type="Resource" uid="uid://bq5fv62g8j8ge" path="res://resources/modifiers/shield/second.tres" id="4_wyofw"]
-[ext_resource type="Resource" uid="uid://ca48mb1gln3n6" path="res://resources/modifiers/shield/third.tres" id="5_vvo6f"]
+[ext_resource type="Script" uid="uid://djn1ef8fxdjj8" path="res://resources/modifiers/shield/shield.gd" id="4_jcm7f"]
+[ext_resource type="Script" uid="uid://bld5briawmr3g" path="res://resources/modifiers/weapon/damage.gd" id="4_vvo6f"]
+[ext_resource type="Script" uid="uid://cqf203o0n1bt2" path="res://resources/modifiers/weapon/fire_rate.gd" id="5_wyofw"]
+[ext_resource type="Script" uid="uid://bqn8i7hw2flq" path="res://resources/modifiers/weapon/accuracy.gd" id="6_wyofw"]
+[ext_resource type="Script" uid="uid://c5s55rvujpl2j" path="res://resources/modifiers/weapon/multishot.gd" id="7_uxxws"]
+
+[sub_resource type="Resource" id="Resource_xgde1"]
+script = ExtResource("4_jcm7f")
+absorption = 2
+recharge_time = 9.0
+metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
 
 [sub_resource type="Resource" id="Resource_wyofw"]
 resource_name = "$300 -> []"
 script = ExtResource("2_jcm7f")
-name = "shield_10%"
-modifier = ExtResource("5_vvo6f")
+name = "+10% Shields"
+modifier = SubResource("Resource_xgde1")
 cost = 300
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_vvo6f"]
+script = ExtResource("4_jcm7f")
+absorption = 2
+recharge_time = 10.0
+metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
 
 [sub_resource type="Resource" id="Resource_mygjp"]
 resource_name = "$500 -> []"
 script = ExtResource("2_jcm7f")
 name = "shield_2x"
-modifier = ExtResource("4_wyofw")
+modifier = SubResource("Resource_vvo6f")
 cost = 500
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_wwk7s"]
+script = ExtResource("4_jcm7f")
+recharge_time = 10.0
+metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
 
 [sub_resource type="Resource" id="Resource_uxxws"]
 resource_name = "$100 -> [\"shield_2x\", \"shield_10%\"]"
 script = ExtResource("2_jcm7f")
 name = "shield_first"
-modifier = ExtResource("3_vvo6f")
+modifier = SubResource("Resource_wwk7s")
 cost = 100
 unlocks = Array[String](["shield_2x", "shield_10%"])
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
 
+[sub_resource type="Resource" id="Resource_rpi4y"]
+script = ExtResource("4_vvo6f")
+damage = 15.0
+type = 1
+metadata/_custom_type_script = "uid://bld5briawmr3g"
+
+[sub_resource type="Resource" id="Resource_ahtv1"]
+resource_name = "$1000 -> [\"fire_rate_1.5x\", \"accuracy_1.5x\"]"
+script = ExtResource("2_jcm7f")
+name = "1.5x Damage"
+modifier = SubResource("Resource_rpi4y")
+cost = 1000
+unlocks = Array[String](["fire_rate_1.5x", "accuracy_1.5x"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_wwvwi"]
+script = ExtResource("5_wyofw")
+fire_rate = 0.067
+type = 1
+metadata/_custom_type_script = "uid://cqf203o0n1bt2"
+
+[sub_resource type="Resource" id="Resource_fjf11"]
+resource_name = "$2000 -> []"
+script = ExtResource("2_jcm7f")
+name = "1.5x Fire Rate"
+modifier = SubResource("Resource_wwvwi")
+cost = 2000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_k2bxx"]
+script = ExtResource("6_wyofw")
+variation = 7.5
+type = 1
+metadata/_custom_type_script = "uid://bqn8i7hw2flq"
+
+[sub_resource type="Resource" id="Resource_ooqwa"]
+resource_name = "$1000 -> [\"dual_shot\"]"
+script = ExtResource("2_jcm7f")
+name = "1.5x Accuracy"
+modifier = SubResource("Resource_k2bxx")
+cost = 1000
+unlocks = Array[String](["dual_shot"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_pf8sw"]
+script = ExtResource("7_uxxws")
+shot = 2
+type = 1
+metadata/_custom_type_script = "uid://c5s55rvujpl2j"
+
+[sub_resource type="Resource" id="Resource_brafw"]
+resource_name = "$5000 -> [\"triple_shot\"]"
+script = ExtResource("2_jcm7f")
+name = "Dual Shot"
+modifier = SubResource("Resource_pf8sw")
+cost = 5000
+unlocks = Array[String](["triple_shot"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_wob2g"]
+script = ExtResource("7_uxxws")
+shot = 1
+type = 1
+metadata/_custom_type_script = "uid://c5s55rvujpl2j"
+
+[sub_resource type="Resource" id="Resource_wqfg1"]
+resource_name = "$10000 -> [\"reverse_shot\"]"
+script = ExtResource("2_jcm7f")
+name = "Triple Shot"
+modifier = SubResource("Resource_wob2g")
+cost = 10000
+unlocks = Array[String](["reverse_shot"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_ar4qt"]
+script = ExtResource("7_uxxws")
+shot = 3
+metadata/_custom_type_script = "uid://c5s55rvujpl2j"
+
+[sub_resource type="Resource" id="Resource_ir0fw"]
+resource_name = "$15000 -> []"
+script = ExtResource("2_jcm7f")
+name = "Reverse Shot"
+modifier = SubResource("Resource_ar4qt")
+cost = 15000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
 [node name="UpgradeDB" type="Node" unique_id=353082770]
 script = ExtResource("1_g1ke0")
-start_upgrades = Array[String](["shield_first"])
+start_upgrades = Array[String](["shield_first", "damage_1.5x"])
 upgrades = Dictionary[String, ExtResource("2_jcm7f")]({
+"accuracy_1.5x": SubResource("Resource_ooqwa"),
+"damage_1.5x": SubResource("Resource_ahtv1"),
+"dual_shot": SubResource("Resource_brafw"),
+"fire_rate_1.5x": SubResource("Resource_fjf11"),
+"reverse_shot": SubResource("Resource_ir0fw"),
 "shield_10%": SubResource("Resource_wyofw"),
 "shield_2x": SubResource("Resource_mygjp"),
-"shield_first": SubResource("Resource_uxxws")
+"shield_first": SubResource("Resource_uxxws"),
+"triple_shot": SubResource("Resource_wqfg1")
 })

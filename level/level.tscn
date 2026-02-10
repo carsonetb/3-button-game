@@ -5,11 +5,12 @@
 [ext_resource type="Script" uid="uid://cbeoptvlu4nx4" path="res://resources/phase.gd" id="2_qohg2"]
 [ext_resource type="Script" uid="uid://cw7swj2a2avhq" path="res://resources/units/seconds.gd" id="3_ktfr2"]
 [ext_resource type="Script" uid="uid://b315rtqgv5yb3" path="res://resources/units/minutes.gd" id="4_44x8d"]
+[ext_resource type="Script" uid="uid://bpylfqidadcuq" path="res://level/background.gd" id="5_44x8d"]
 
 [sub_resource type="Resource" id="Resource_ivpvi"]
-resource_name = "3 seconds"
+resource_name = "0 seconds"
 script = ExtResource("3_ktfr2")
-value = 3.0
+value = 0.1
 metadata/_custom_type_script = "uid://cw7swj2a2avhq"
 
 [sub_resource type="Resource" id="Resource_0v1st"]
@@ -50,22 +51,32 @@ metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
 script = ExtResource("1_7lnir")
 phases = Array[ExtResource("2_qohg2")]([SubResource("Resource_vkbyq"), SubResource("Resource_6gtgk")])
 
+[node name="Background" type="Parallax2D" parent="." unique_id=1721842745]
+repeat_size = Vector2(1920, 1080)
+autoscroll = Vector2(-10, -10)
+
+[node name="Drawer" type="Node2D" parent="Background" unique_id=541177604]
+script = ExtResource("5_44x8d")
+num_stars = 40
+min_size = 0.5
+max_size = 1.0
+
 [node name="UI" parent="." unique_id=490631448 instance=ExtResource("2_5gx2l")]
 
 [node name="BoundingBox" type="ColorRect" parent="." unique_id=551164407]
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1919.0
+offset_bottom = 1078.0
 color = Color(0.26330742, 0.42935717, 1, 0.09803922)
 
 [node name="SpawnBox" type="ColorRect" parent="." unique_id=1698430887]
 offset_left = 351.0
 offset_top = 167.0
-offset_right = 832.0
-offset_bottom = 478.0
+offset_right = 1715.0
+offset_bottom = 923.0
 color = Color(0.725943, 0.10885731, 0.27744344, 0.20392157)
 
 [node name="AstroidSpawn" type="Line2D" parent="." unique_id=2019910945]
-points = PackedVector2Array(1215, -52, 1214, 720, -74, 710, -78, -48)
+points = PackedVector2Array(1971, -26, 1971, 1128, -58, 1119, -78, -48)
 closed = true
 
 [node name="AstroidTimer" type="Timer" parent="." unique_id=1742209031]

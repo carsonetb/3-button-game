@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DamageModifier" format=3 uid="uid://ci0up34tdsmj6"]
+
+[ext_resource type="Script" uid="uid://bld5briawmr3g" path="res://resources/modifiers/weapon/damage.gd" id="1_l1w61"]
+
+[resource]
+script = ExtResource("1_l1w61")
+damage = 15.0
+type = 1
+metadata/_custom_type_script = "uid://bld5briawmr3g"
