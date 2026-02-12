@@ -15,6 +15,7 @@ var movement_direction: Vector2:
 	get:
 		return velocity.normalized()
 
+@onready var level: Level = get_parent()
 @onready var hud: PlayerHUD = $HUD
 @onready var animation: PlayerAnimation = $Animation
 @onready var weapons: PlayerWeapons = $Weapons

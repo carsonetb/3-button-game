@@ -4,7 +4,7 @@ extends Node2D
 signal damaged(new_health: float)
 signal died
 
-var health: float = 100.0
+@export var health: float = 100.0
 
 @onready var health_bar: ProgressBar = $HealthBar
 

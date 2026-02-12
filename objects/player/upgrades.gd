@@ -3,11 +3,9 @@ extends Node
 
 var available: Dictionary[String, Upgrade] = {}
 
-@onready var money: int = 40000:
+@onready var money: int = 0:
 	set(val):
 		money = val 
-		print("Set money to {0}".format([money]))
-		print_stack()
 @onready var player: Player = get_parent()
 
 func _ready() -> void:

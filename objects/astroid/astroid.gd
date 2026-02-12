@@ -7,6 +7,7 @@ signal destroyed(money: int)
 
 @export_tool_button("Regenerate") var tool_regenerate: Callable = generate_poly
 
+@export var worth_multiplier: float = 1.0
 @export var num_points: int = 32
 @export var radius: float = 0.0
 @export var noise_scale: float = 3.0
@@ -25,7 +26,7 @@ func _ready() -> void:
 	rotation = randf_range(0.0, TAU)
 	rot_vel = randf_range(0.0, deg_to_rad(Constants.ASTROID_MAX_ROT_VEL))
 	health.health *= scale.length()
-	var worth := (scale.length() - 0.4) * 20.0
+	var worth := (scale.length() - 0.4) * 20.0 * worth_multiplier
 	
 	await health.died 
 	
@@ -64,3 +65,16 @@ static func create_ex(velocity: Vector2) -> Astroid:
 
 static func create(direction: Vector2, speed: float) -> Astroid:
 	return create_ex(direction * speed)
+
+static func create_strong(direction: Vector2, speed: float) -> Astroid:
+	var packed: PackedScene = load("uid://dbvsavhd4sido")
+	var out: Astroid = packed.instantiate()
+	out.velocity = direction * speed 
+	return out
+
+static func create_green(direction: Vector2, speed: float) -> Astroid:
+	var packed: PackedScene = load("uid://cdpfe258gvfa5")
+	var out: Astroid = packed.instantiate()
+	out.velocity = direction * speed 
+	return out
+	

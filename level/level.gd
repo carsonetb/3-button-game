@@ -12,6 +12,8 @@ extends Node2D
 var player: Player
 var phase_events: Array
 var logger := DebugLogger.new("Level")
+var phase: Phase
+var green_rock_chance: float = 0.0
 
 func _ready() -> void:
 	bounds.visible = false 
@@ -33,7 +35,7 @@ func _ready() -> void:
 
 func run_phases() -> void:
 	while !phases.is_empty():
-		var phase: Phase = phases.pop_front()
+		phase = phases.pop_front()
 		logger.debug("Begin phase \"{0}\".".format([phase.name]))
 		ui.display_popup(phase.name)
 		spawn_timer.wait_time = phase.spawn_interval.in_seconds()
@@ -60,7 +62,14 @@ func _on_astroid_timer_timeout() -> void:
 	var intersects: Vector2 = Util.pick_control_point(spawn_bounds)
 	var direction: Vector2 = pos.direction_to(intersects)
 	var speed: float = randf_range(Constants.ASTROID_MIN_SPEED, Constants.ASTROID_MAX_SPEED)
-	var astroid: Astroid = Astroid.create(direction, speed)
+	var astroid: Astroid
+	if randf_range(0.0, 1.0) > phase.strong_chance:
+		if randf_range(0.0, 1.0) > green_rock_chance:
+			astroid = Astroid.create(direction, speed)
+		else:
+			astroid = Astroid.create_green(direction, speed)
+	else:
+		astroid = Astroid.create_strong(direction, speed)
 	astroid.destroyed.connect(_on_astroid_destroyed)
 	add_child(astroid)
 	astroid.position = pos 

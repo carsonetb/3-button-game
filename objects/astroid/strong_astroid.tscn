@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dbvsavhd4sido"]
+
+[ext_resource type="Script" uid="uid://bl7w2m3n3aay1" path="res://objects/astroid/astroid.gd" id="1_ah1r0"]
+[ext_resource type="Script" uid="uid://dlv45gjc4lpnp" path="res://objects/astroid/health.gd" id="2_edh4d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3w65k"]
+radius = 79.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3w65k"]
+bg_color = Color(0.74509805, 0, 0.08627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axqxm"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="StrongAstroid" type="Area2D" unique_id=1655164245]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ah1r0")
+worth_multiplier = 2.0
+num_points = 64
+radius = 75.0
+noise_scale = 10.0
+
+[node name="Poly" type="Polygon2D" parent="." unique_id=1840681451]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(83.23628, 0, 76.45208, 7.529873, 82.39886, 16.390152, 74.30181, 22.539207, 73.96917, 30.639032, 71.96318, 38.465122, 65.75575, 43.93659, 59.40634, 48.753525, 54.048805, 54.048805, 47.734753, 58.164967, 42.20769, 63.16827, 37.816147, 70.74904, 31.498768, 76.044754, 23.497223, 77.45997, 14.8205, 74.50768, 7.6401186, 77.57143, 4.8015198e-15, 78.414764, -7.7235804, 78.41883, -15.275357, 76.7944, -24.273352, 80.018524, -31.380157, 75.7584, -38.38027, 71.804436, -44.721867, 66.931, -53.819374, 65.579094, -55.34651, 55.34651, -60.12929, 49.346836, -70.276825, 46.957474, -71.99212, 38.48059, -78.27703, 32.42341, -75.90901, 23.026747, -75.76616, 15.0708275, -78.037674, 7.6860404, -79.12349, 9.689833e-15, -75.992294, -7.4845877, -81.46444, -16.204285, -74.56472, -22.618958, -74.93735, -31.040066, -68.60359, -36.66938, -66.768394, -44.613216, -60.217525, -49.419247, -53.434868, -53.434868, -49.410686, -60.207092, -46.852753, -70.120094, -37.85328, -70.818504, -31.789463, -76.74655, -24.128534, -79.54112, -15.800542, -79.434685, -7.6573834, -77.74672, -1.5514322e-14, -84.45603, 7.966112, -80.881294, 14.757738, -74.192154, 23.028358, -75.91433, 28.836592, -69.61769, 39.81882, -74.49578, 46.25831, -69.23045, 52.468987, -63.933647, 58.44129, -58.44129, 59.92672, -49.180588, 66.78128, -44.621826, 68.13302, -36.417854, 76.59818, -31.728006, 74.72131, -22.666462, 77.663734, -15.448277, 83.29789, -8.204126)
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=396800661]
+shape = SubResource("CircleShape2D_3w65k")
+
+[node name="Health" type="Node2D" parent="." unique_id=2103726470]
+script = ExtResource("2_edh4d")
+health = 1000.0
+
+[node name="HealthBar" type="ProgressBar" parent="Health" unique_id=1094744923]
+offset_left = -13.0
+offset_top = -90.0
+offset_right = 13.0
+offset_bottom = -89.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3w65k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_axqxm")
+value = 100.0
+show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

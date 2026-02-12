@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://bpylfqidadcuq" path="res://level/background.gd" id="5_44x8d"]
 
 [sub_resource type="Resource" id="Resource_ivpvi"]
-resource_name = "0 seconds"
+resource_name = "3 seconds"
 script = ExtResource("3_ktfr2")
-value = 0.1
+value = 3.0
 metadata/_custom_type_script = "uid://cw7swj2a2avhq"
 
 [sub_resource type="Resource" id="Resource_0v1st"]
@@ -25,12 +25,13 @@ script = ExtResource("2_qohg2")
 name = "Phase 1"
 time = SubResource("Resource_0v1st")
 spawn_interval = SubResource("Resource_ivpvi")
+strong_chance = 0.0
 metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
 
 [sub_resource type="Resource" id="Resource_ktfr2"]
-resource_name = "1 second"
+resource_name = "2 seconds"
 script = ExtResource("3_ktfr2")
-value = 1.0
+value = 2.0
 metadata/_custom_type_script = "uid://cw7swj2a2avhq"
 
 [sub_resource type="Resource" id="Resource_44x8d"]
@@ -45,11 +46,74 @@ script = ExtResource("2_qohg2")
 name = "Phase 2"
 time = SubResource("Resource_44x8d")
 spawn_interval = SubResource("Resource_ktfr2")
+strong_chance = 0.0
+metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
+
+[sub_resource type="Resource" id="Resource_cw150"]
+resource_name = "1 seconds"
+script = ExtResource("3_ktfr2")
+value = 0.5
+metadata/_custom_type_script = "uid://cw7swj2a2avhq"
+
+[sub_resource type="Resource" id="Resource_xii2b"]
+resource_name = "3 minutes"
+script = ExtResource("4_44x8d")
+value = 3.0
+metadata/_custom_type_script = "uid://b315rtqgv5yb3"
+
+[sub_resource type="Resource" id="Resource_rhqlf"]
+resource_name = "Phase 3: 0 minutes"
+script = ExtResource("2_qohg2")
+name = "Phase 3"
+time = SubResource("Resource_xii2b")
+spawn_interval = SubResource("Resource_cw150")
+metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
+
+[sub_resource type="Resource" id="Resource_l5lfc"]
+resource_name = "0 seconds"
+script = ExtResource("3_ktfr2")
+value = 0.4
+metadata/_custom_type_script = "uid://cw7swj2a2avhq"
+
+[sub_resource type="Resource" id="Resource_m3nah"]
+resource_name = "3 minutes"
+script = ExtResource("4_44x8d")
+value = 3.0
+metadata/_custom_type_script = "uid://b315rtqgv5yb3"
+
+[sub_resource type="Resource" id="Resource_fm1jd"]
+resource_name = "Phase 4: 0 minutes"
+script = ExtResource("2_qohg2")
+name = "Phase 4"
+time = SubResource("Resource_m3nah")
+spawn_interval = SubResource("Resource_l5lfc")
+strong_chance = 0.02
+metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
+
+[sub_resource type="Resource" id="Resource_7jqyl"]
+resource_name = "0 seconds"
+script = ExtResource("3_ktfr2")
+value = 0.2
+metadata/_custom_type_script = "uid://cw7swj2a2avhq"
+
+[sub_resource type="Resource" id="Resource_m5ivw"]
+resource_name = "5 minutes"
+script = ExtResource("4_44x8d")
+value = 5.0
+metadata/_custom_type_script = "uid://b315rtqgv5yb3"
+
+[sub_resource type="Resource" id="Resource_sui6v"]
+resource_name = "Phase 5: 0 minutes"
+script = ExtResource("2_qohg2")
+name = "Phase 5"
+time = SubResource("Resource_m5ivw")
+spawn_interval = SubResource("Resource_7jqyl")
+strong_chance = 0.05
 metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
 
 [node name="Level" type="Node2D" unique_id=248361577]
 script = ExtResource("1_7lnir")
-phases = Array[ExtResource("2_qohg2")]([SubResource("Resource_vkbyq"), SubResource("Resource_6gtgk")])
+phases = Array[ExtResource("2_qohg2")]([SubResource("Resource_vkbyq"), SubResource("Resource_6gtgk"), SubResource("Resource_rhqlf"), SubResource("Resource_fm1jd"), SubResource("Resource_sui6v")])
 
 [node name="Background" type="Parallax2D" parent="." unique_id=1721842745]
 repeat_size = Vector2(1920, 1080)

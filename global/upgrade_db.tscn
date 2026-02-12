@@ -3,55 +3,31 @@
 [ext_resource type="Script" uid="uid://c2u0v7woy1s32" path="res://global/upgrade_db.gd" id="1_g1ke0"]
 [ext_resource type="Script" uid="uid://dsjfcfdynyr35" path="res://resources/upgrade.gd" id="2_jcm7f"]
 [ext_resource type="Script" uid="uid://djn1ef8fxdjj8" path="res://resources/modifiers/shield/shield.gd" id="4_jcm7f"]
-[ext_resource type="Script" uid="uid://bld5briawmr3g" path="res://resources/modifiers/weapon/damage.gd" id="4_vvo6f"]
+[ext_resource type="Script" uid="uid://bld5briawmr3g" path="res://resources/modifiers/weapon/damage.gd" id="4_uxxws"]
+[ext_resource type="Script" uid="uid://c5s55rvujpl2j" path="res://resources/modifiers/weapon/multishot.gd" id="5_mygjp"]
 [ext_resource type="Script" uid="uid://cqf203o0n1bt2" path="res://resources/modifiers/weapon/fire_rate.gd" id="5_wyofw"]
 [ext_resource type="Script" uid="uid://bqn8i7hw2flq" path="res://resources/modifiers/weapon/accuracy.gd" id="6_wyofw"]
-[ext_resource type="Script" uid="uid://c5s55rvujpl2j" path="res://resources/modifiers/weapon/multishot.gd" id="7_uxxws"]
+[ext_resource type="Script" uid="uid://cvbup2u3hdwy7" path="res://resources/modifiers/shield/recharge.gd" id="7_wwk7s"]
+[ext_resource type="Script" uid="uid://baiowbnoyjtgr" path="res://resources/modifiers/shield/absorption.gd" id="8_rpi4y"]
+[ext_resource type="Script" uid="uid://bi38ks8kq73aq" path="res://resources/modifiers/green_rocks.gd" id="10_rpi4y"]
 
-[sub_resource type="Resource" id="Resource_xgde1"]
-script = ExtResource("4_jcm7f")
-absorption = 2
-recharge_time = 9.0
-metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
+[sub_resource type="Resource" id="Resource_k2bxx"]
+script = ExtResource("6_wyofw")
+variation = 7.5
+type = 1
+metadata/_custom_type_script = "uid://bqn8i7hw2flq"
 
-[sub_resource type="Resource" id="Resource_wyofw"]
-resource_name = "$300 -> []"
+[sub_resource type="Resource" id="Resource_ooqwa"]
+resource_name = "$1000 -> [\"dual_shot\", \"accuracy_2x\"]"
 script = ExtResource("2_jcm7f")
-name = "+10% Shields"
-modifier = SubResource("Resource_xgde1")
-cost = 300
-metadata/_custom_type_script = "uid://dsjfcfdynyr35"
-
-[sub_resource type="Resource" id="Resource_vvo6f"]
-script = ExtResource("4_jcm7f")
-absorption = 2
-recharge_time = 10.0
-metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
-
-[sub_resource type="Resource" id="Resource_mygjp"]
-resource_name = "$500 -> []"
-script = ExtResource("2_jcm7f")
-name = "shield_2x"
-modifier = SubResource("Resource_vvo6f")
-cost = 500
-metadata/_custom_type_script = "uid://dsjfcfdynyr35"
-
-[sub_resource type="Resource" id="Resource_wwk7s"]
-script = ExtResource("4_jcm7f")
-recharge_time = 10.0
-metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
-
-[sub_resource type="Resource" id="Resource_uxxws"]
-resource_name = "$100 -> [\"shield_2x\", \"shield_10%\"]"
-script = ExtResource("2_jcm7f")
-name = "shield_first"
-modifier = SubResource("Resource_wwk7s")
-cost = 100
-unlocks = Array[String](["shield_2x", "shield_10%"])
+name = "1.5x Accuracy"
+modifier = SubResource("Resource_k2bxx")
+cost = 1000
+unlocks = Array[String](["dual_shot", "accuracy_2x"])
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
 
 [sub_resource type="Resource" id="Resource_rpi4y"]
-script = ExtResource("4_vvo6f")
+script = ExtResource("4_uxxws")
 damage = 15.0
 type = 1
 metadata/_custom_type_script = "uid://bld5briawmr3g"
@@ -65,37 +41,8 @@ cost = 1000
 unlocks = Array[String](["fire_rate_1.5x", "accuracy_1.5x"])
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
 
-[sub_resource type="Resource" id="Resource_wwvwi"]
-script = ExtResource("5_wyofw")
-fire_rate = 0.067
-type = 1
-metadata/_custom_type_script = "uid://cqf203o0n1bt2"
-
-[sub_resource type="Resource" id="Resource_fjf11"]
-resource_name = "$2000 -> []"
-script = ExtResource("2_jcm7f")
-name = "1.5x Fire Rate"
-modifier = SubResource("Resource_wwvwi")
-cost = 2000
-metadata/_custom_type_script = "uid://dsjfcfdynyr35"
-
-[sub_resource type="Resource" id="Resource_k2bxx"]
-script = ExtResource("6_wyofw")
-variation = 7.5
-type = 1
-metadata/_custom_type_script = "uid://bqn8i7hw2flq"
-
-[sub_resource type="Resource" id="Resource_ooqwa"]
-resource_name = "$1000 -> [\"dual_shot\"]"
-script = ExtResource("2_jcm7f")
-name = "1.5x Accuracy"
-modifier = SubResource("Resource_k2bxx")
-cost = 1000
-unlocks = Array[String](["dual_shot"])
-metadata/_custom_type_script = "uid://dsjfcfdynyr35"
-
 [sub_resource type="Resource" id="Resource_pf8sw"]
-script = ExtResource("7_uxxws")
+script = ExtResource("5_mygjp")
 shot = 2
 type = 1
 metadata/_custom_type_script = "uid://c5s55rvujpl2j"
@@ -109,42 +56,203 @@ cost = 5000
 unlocks = Array[String](["triple_shot"])
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
 
-[sub_resource type="Resource" id="Resource_wob2g"]
-script = ExtResource("7_uxxws")
-shot = 1
+[sub_resource type="Resource" id="Resource_wwvwi"]
+script = ExtResource("5_wyofw")
+fire_rate = 0.067
 type = 1
-metadata/_custom_type_script = "uid://c5s55rvujpl2j"
+metadata/_custom_type_script = "uid://cqf203o0n1bt2"
 
-[sub_resource type="Resource" id="Resource_wqfg1"]
-resource_name = "$10000 -> [\"reverse_shot\"]"
+[sub_resource type="Resource" id="Resource_fjf11"]
+resource_name = "$2000 -> [\"fire_rate_2x\"]"
 script = ExtResource("2_jcm7f")
-name = "Triple Shot"
-modifier = SubResource("Resource_wob2g")
-cost = 10000
-unlocks = Array[String](["reverse_shot"])
+name = "1.5x Fire Rate"
+modifier = SubResource("Resource_wwvwi")
+cost = 2000
+unlocks = Array[String](["fire_rate_2x"])
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
 
-[sub_resource type="Resource" id="Resource_ar4qt"]
-script = ExtResource("7_uxxws")
+[sub_resource type="Resource" id="Resource_wob2g"]
+script = ExtResource("5_mygjp")
 shot = 3
+type = 1
 metadata/_custom_type_script = "uid://c5s55rvujpl2j"
 
 [sub_resource type="Resource" id="Resource_ir0fw"]
 resource_name = "$15000 -> []"
 script = ExtResource("2_jcm7f")
 name = "Reverse Shot"
-modifier = SubResource("Resource_ar4qt")
+modifier = SubResource("Resource_wob2g")
 cost = 15000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_l7jy4"]
+script = ExtResource("7_wwk7s")
+recharge_time = 9.0
+metadata/_custom_type_script = "uid://cvbup2u3hdwy7"
+
+[sub_resource type="Resource" id="Resource_wyofw"]
+resource_name = "$500 -> []"
+script = ExtResource("2_jcm7f")
+name = "+10% Shields"
+modifier = SubResource("Resource_l7jy4")
+cost = 500
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_3d5ii"]
+script = ExtResource("8_rpi4y")
+absorption = 2
+metadata/_custom_type_script = "uid://baiowbnoyjtgr"
+
+[sub_resource type="Resource" id="Resource_mygjp"]
+resource_name = "$5000 -> []"
+script = ExtResource("2_jcm7f")
+name = "shield_2x"
+modifier = SubResource("Resource_3d5ii")
+cost = 5000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_wwk7s"]
+script = ExtResource("4_jcm7f")
+recharge_time = 10.0
+metadata/_custom_type_script = "uid://djn1ef8fxdjj8"
+
+[sub_resource type="Resource" id="Resource_uxxws"]
+resource_name = "$400 -> [\"shield_2x\", \"shield_10%\"]"
+script = ExtResource("2_jcm7f")
+name = "shield_first"
+modifier = SubResource("Resource_wwk7s")
+cost = 400
+unlocks = Array[String](["shield_2x", "shield_10%"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_ar4qt"]
+script = ExtResource("5_mygjp")
+shot = 1
+metadata/_custom_type_script = "uid://c5s55rvujpl2j"
+
+[sub_resource type="Resource" id="Resource_wqfg1"]
+resource_name = "$10000 -> [\"reverse_shot\"]"
+script = ExtResource("2_jcm7f")
+name = "Triple Shot"
+modifier = SubResource("Resource_ar4qt")
+cost = 10000
+unlocks = Array[String](["reverse_shot"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_i52s0"]
+script = ExtResource("5_wyofw")
+fire_rate = 0.05
+type = 1
+metadata/_custom_type_script = "uid://cqf203o0n1bt2"
+
+[sub_resource type="Resource" id="Resource_4328x"]
+resource_name = "$10000 -> [\"fire_rate_5x\"]"
+script = ExtResource("2_jcm7f")
+name = "2x Fire Rate"
+modifier = SubResource("Resource_i52s0")
+cost = 10000
+unlocks = Array[String](["fire_rate_5x"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_js2hr"]
+script = ExtResource("4_uxxws")
+damage = 20.0
+type = 1
+metadata/_custom_type_script = "uid://bld5briawmr3g"
+
+[sub_resource type="Resource" id="Resource_q0xim"]
+resource_name = "$12000 -> [\"damage_5x\"]"
+script = ExtResource("2_jcm7f")
+name = "2x Damage"
+modifier = SubResource("Resource_js2hr")
+cost = 12000
+unlocks = Array[String](["damage_5x"])
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_it8ji"]
+script = ExtResource("5_wyofw")
+fire_rate = 0.02
+type = 1
+metadata/_custom_type_script = "uid://cqf203o0n1bt2"
+
+[sub_resource type="Resource" id="Resource_xctkb"]
+resource_name = "$50000 -> []"
+script = ExtResource("2_jcm7f")
+name = "5x Fire Rate"
+modifier = SubResource("Resource_it8ji")
+cost = 50000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_e1c43"]
+script = ExtResource("4_uxxws")
+damage = 50.0
+type = 1
+metadata/_custom_type_script = "uid://bld5briawmr3g"
+
+[sub_resource type="Resource" id="Resource_2ou8u"]
+resource_name = "$20000 -> []"
+script = ExtResource("2_jcm7f")
+name = "5x Damage"
+modifier = SubResource("Resource_e1c43")
+cost = 20000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_e7u8i"]
+script = ExtResource("6_wyofw")
+type = 1
+metadata/_custom_type_script = "uid://bqn8i7hw2flq"
+
+[sub_resource type="Resource" id="Resource_47086"]
+resource_name = "$5000 -> []"
+script = ExtResource("2_jcm7f")
+name = "2x Accuracy"
+modifier = SubResource("Resource_e7u8i")
+cost = 5000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_wkbrv"]
+script = ExtResource("10_rpi4y")
+chance = 0.01
+type = 2
+metadata/_custom_type_script = "uid://bi38ks8kq73aq"
+
+[sub_resource type="Resource" id="Resource_m185d"]
+resource_name = "$1000 -> []"
+script = ExtResource("2_jcm7f")
+name = "1% Green Rock Chance"
+modifier = SubResource("Resource_wkbrv")
+cost = 1000
+metadata/_custom_type_script = "uid://dsjfcfdynyr35"
+
+[sub_resource type="Resource" id="Resource_hsb0o"]
+script = ExtResource("10_rpi4y")
+chance = 0.03
+type = 2
+metadata/_custom_type_script = "uid://bi38ks8kq73aq"
+
+[sub_resource type="Resource" id="Resource_d4mbq"]
+resource_name = "$3000 -> []"
+script = ExtResource("2_jcm7f")
+name = "3% Green Rock Chance"
+modifier = SubResource("Resource_hsb0o")
+cost = 3000
 metadata/_custom_type_script = "uid://dsjfcfdynyr35"
 
 [node name="UpgradeDB" type="Node" unique_id=353082770]
 script = ExtResource("1_g1ke0")
-start_upgrades = Array[String](["shield_first", "damage_1.5x"])
+start_upgrades = Array[String](["shield_first", "fire_rate_1.5x", "damage_1.5x", "green_1%"])
 upgrades = Dictionary[String, ExtResource("2_jcm7f")]({
 "accuracy_1.5x": SubResource("Resource_ooqwa"),
+"accuracy_2x": SubResource("Resource_47086"),
 "damage_1.5x": SubResource("Resource_ahtv1"),
+"damage_2x": SubResource("Resource_q0xim"),
+"damage_5x": SubResource("Resource_2ou8u"),
 "dual_shot": SubResource("Resource_brafw"),
 "fire_rate_1.5x": SubResource("Resource_fjf11"),
+"fire_rate_2x": SubResource("Resource_4328x"),
+"fire_rate_5x": SubResource("Resource_xctkb"),
+"green_1%": SubResource("Resource_m185d"),
+"green_3%": SubResource("Resource_d4mbq"),
 "reverse_shot": SubResource("Resource_ir0fw"),
 "shield_10%": SubResource("Resource_wyofw"),
 "shield_2x": SubResource("Resource_mygjp"),

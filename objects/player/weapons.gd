@@ -18,8 +18,6 @@ var variation: float = 10.0 # deg
 @onready var shoot_timer: Timer = $Shoot
 @onready var bullet_scene: PackedScene = preload("uid://db07di0sgxahh") # objects/bullet/bullet.tscn
 
-var bullet_speed: float = 1000.0 # px/s
-
 func _process(delta: float) -> void:
 	if !player.input.shooting || !shoot_timer.is_stopped():
 		return
