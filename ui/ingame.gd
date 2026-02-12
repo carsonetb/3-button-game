@@ -31,7 +31,7 @@ func set_upgrades(upgrades: Array[Upgrade], money: int) -> void:
 		var button: Button = Button.new()
 		button.text = str(upgrade)
 		button.disabled = money < upgrade.cost
-		button.pressed.connect(_on_upgrade_pressed.bind(upgrade.name))
+		button.pressed.connect(_on_upgrade_pressed.bind(upgrade.key_name))
 		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		upgrades_container.add_child(button)
 	

@@ -13,6 +13,8 @@ extends Resource
 		unlocks = val 
 		_init()
 
+var key_name: String
+
 func _init() -> void:
 	call_deferred("set", "resource_name", "${0} -> {1}".format([cost, str(unlocks)]))
 
