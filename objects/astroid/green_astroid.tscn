@@ -16,7 +16,7 @@ bg_color = Color(1, 1, 1, 1)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_tippt")
-worth_multiplier = 20.0
+worth_multiplier = 40.0
 num_points = 64
 radius = 40.0
 

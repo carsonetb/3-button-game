@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://diowqxhscw6u8"]
+
+[ext_resource type="Script" uid="uid://b1vo1x0x8ck3b" path="res://objects/boss/bullet.gd" id="1_vw734"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw734"]
+radius = 5.0
+
+[node name="BossBullet" type="Area2D" unique_id=539634675]
+scale = Vector2(0.7764198, 0.7764198)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_vw734")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1630535961]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-9, -4, 9, -3, 8, 4, -10, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1606148604]
+shape = SubResource("CircleShape2D_vw734")
+
+[node name="Timer" type="Timer" parent="." unique_id=1550088118]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -16,7 +16,7 @@ bg_color = Color(1, 1, 1, 1)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_3w65k")
-worth_multiplier = 3.0
+worth_multiplier = 4.0
 radius = 25.0
 noise_scale = 10.0
 

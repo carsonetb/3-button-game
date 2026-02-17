@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cbjev3k01vcxq"]
+
+[ext_resource type="Script" uid="uid://c58pibm0l36po" path="res://objects/boss/boss.gd" id="1_tpqxl"]
+[ext_resource type="Script" uid="uid://dlv45gjc4lpnp" path="res://objects/astroid/health.gd" id="2_otc5v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwimi"]
+bg_color = Color(0.74509805, 0, 0.08627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7abmv"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Boss" type="Area2D" unique_id=726654363]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_tpqxl")
+
+[node name="Poly" type="Polygon2D" parent="." unique_id=1446025140]
+polygon = PackedVector2Array(0, 59, 47, 58, 88, 43, 115, 21, 137, 7, 164, 6, 165, -4, 128, -6, 107, -13, 85, -26, 50, -43, 15, -52, -5, -53, -45, -46, -79, -31, -107, -18, -140, -7, -173, -6, -173, 5, -131, 5, -106, 15, -85, 29, -67, 45, -41, 55)
+
+[node name="Eye" type="Polygon2D" parent="Poly" unique_id=1627846768]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-25, -32, -19, -27, -24, -22, -29, -27)
+
+[node name="Eye2" type="Polygon2D" parent="Poly" unique_id=160289606]
+position = Vector2(47, 0)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-25, -32, -19, -27, -24, -22, -29, -27)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=712950322]
+polygon = PackedVector2Array(0, 59, 47, 58, 88, 43, 115, 21, 137, 7, 164, 6, 165, -4, 128, -6, 107, -13, 85, -26, 50, -43, 15, -52, -5, -53, -45, -46, -79, -31, -107, -18, -140, -7, -173, -6, -173, 5, -131, 5, -106, 15, -85, 29, -67, 45, -41, 55)
+
+[node name="Shoot" type="Timer" parent="." unique_id=226499769]
+wait_time = 0.5
+autostart = true
+
+[node name="LeftSpawn" type="Node2D" parent="." unique_id=1112837893]
+position = Vector2(-173, 0)
+
+[node name="RightSpawn" type="Node2D" parent="." unique_id=989717800]
+position = Vector2(165, 0)
+
+[node name="Health" type="Node2D" parent="." unique_id=809783091]
+script = ExtResource("2_otc5v")
+health = 5000.0
+
+[node name="HealthBar" type="ProgressBar" parent="Health" unique_id=1926262215]
+offset_left = -122.0
+offset_top = -82.0
+offset_right = 123.0
+offset_bottom = -81.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jwimi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7abmv")
+value = 100.0
+show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]

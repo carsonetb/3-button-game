@@ -12,7 +12,7 @@ extends Resource
 		reload_name()
 @export var spawn_interval: TimeUnit
 @export var strong_chance: float = 0.01
-@export var events: Array ## This will be built later with the "Event" type
+@export var events: Array[Event] ## This will be built later with the "Event" type
 
 func _init() -> void:
 	reload_name.call_deferred()

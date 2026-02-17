@@ -14,6 +14,7 @@ var phase_events: Array
 var logger := DebugLogger.new("Level")
 var phase: Phase
 var green_rock_chance: float = 0.0
+var phase_time: float = 0.0
 
 func _ready() -> void:
 	bounds.visible = false 
@@ -33,6 +34,13 @@ func _ready() -> void:
 	await ui.restart
 	get_tree().reload_current_scene()
 
+func _process(delta: float) -> void:
+	phase_time += delta
+	for event in phase.events:
+		if !event.applied && phase_time > event.happens_at.in_seconds():
+			event.applied = true
+			event.apply(self)
+
 func run_phases() -> void:
 	while !phases.is_empty():
 		phase = phases.pop_front()
@@ -40,6 +48,7 @@ func run_phases() -> void:
 		ui.display_popup(phase.name)
 		spawn_timer.wait_time = phase.spawn_interval.in_seconds()
 		phase_events = phase.events
+		phase_time = 0.0
 		await get_tree().create_timer(phase.time.in_seconds()).timeout
 	
 	logger.debug("Phases complete.")

@@ -6,7 +6,10 @@ signal died
 
 @export var start_health: int = 3
 
-var health: int = start_health
+var health: int = start_health:
+	set(val):
+		health = val 
+		player.hud.set_lives(health)
 var invincible: bool = false
 
 @onready var player: Player = get_parent()
