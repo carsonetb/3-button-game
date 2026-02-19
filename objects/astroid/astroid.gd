@@ -33,6 +33,22 @@ func _ready() -> void:
 	await health.died 
 	
 	destroyed.emit(self, worth)
+	
+	var step: int = [2, 4, 8, 16].pick_random()
+	var total := Vector2.ZERO
+	for point in poly.polygon:
+		total += point 
+	var avg := total / float(poly.polygon.size())
+	for i in range(0, num_points, step):
+		var slice_points: Array[Vector2] = []
+		for j in range(step):
+			slice_points.append(poly.polygon[i + j])
+		slice_points.append(avg)
+		var chunk := AstroidPiece.create(slice_points, Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * 250.0)
+		get_parent().add_child(chunk)
+		chunk.scale = scale
+		chunk.global_position = global_position
+	
 	queue_free()
 
 func _process(delta: float) -> void:
@@ -41,6 +57,9 @@ func _process(delta: float) -> void:
 	
 	position += velocity * delta
 	rotation += rot_vel * delta
+	
+	if position.length() > 3000.0:
+		queue_free()
 
 func generate_poly() -> void:
 	var new_polygon: Array[Vector2] = []

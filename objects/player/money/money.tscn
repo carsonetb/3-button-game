@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ba3fpqywfev6w" path="res://objects/player/money/money.gd" id="1_fsb3w"]
 
 [node name="Money" type="Polygon2D" unique_id=424755943]
-self_modulate = Color(2.454227, 2.454227, 2.454227, 1)
+self_modulate = Color(3.2944162, 3.2944162, 3.2944162, 1)
 color = Color(1.9749014, 1.9749014, 0, 1)
 polygon = PackedVector2Array(0, 5, 4, 0, 0, -5, -4, 0)
 script = ExtResource("1_fsb3w")

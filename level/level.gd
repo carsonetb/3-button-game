@@ -43,6 +43,9 @@ func _process(delta: float) -> void:
 
 func run_phases() -> void:
 	while !phases.is_empty():
+		if get_tree().paused:
+			await get_tree().process_frame
+			continue
 		phase = phases.pop_front()
 		logger.debug("Begin phase \"{0}\".".format([phase.name]))
 		ui.display_popup(phase.name)
@@ -61,7 +64,7 @@ func pause() -> void:
 	get_tree().paused = true
 
 func _on_astroid_destroyed(astroid: Astroid, worth: int) -> void:
-	for i in range(int(astroid.worth)):
+	for i in range(int(astroid.worth) / 5):
 		var money := Money.create(player)
 		add_child(money)
 		money.global_position = astroid.global_position + Vector2(randf_range(-20.0, 20.0), randf_range(-20.0, 20.0))

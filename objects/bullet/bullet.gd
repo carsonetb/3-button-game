@@ -16,3 +16,7 @@ static func create(direction: Vector2, speed: float) -> Bullet:
 func _process(delta: float) -> void:
 	rotation = direction.angle() + deg_to_rad(90.0)
 	position += direction * speed * delta
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

@@ -30,7 +30,7 @@ polygon = PackedVector2Array(-25, -32, -19, -27, -24, -22, -29, -27)
 polygon = PackedVector2Array(0, 59, 47, 58, 88, 43, 115, 21, 137, 7, 164, 6, 165, -4, 128, -6, 107, -13, 85, -26, 50, -43, 15, -52, -5, -53, -45, -46, -79, -31, -107, -18, -140, -7, -173, -6, -173, 5, -131, 5, -106, 15, -85, 29, -67, 45, -41, 55)
 
 [node name="Shoot" type="Timer" parent="." unique_id=226499769]
-wait_time = 0.5
+wait_time = 0.15
 autostart = true
 
 [node name="LeftSpawn" type="Node2D" parent="." unique_id=1112837893]
@@ -41,7 +41,7 @@ position = Vector2(165, 0)
 
 [node name="Health" type="Node2D" parent="." unique_id=809783091]
 script = ExtResource("2_otc5v")
-health = 20000.0
+health = 35000.0
 
 [node name="HealthBar" type="ProgressBar" parent="Health" unique_id=1926262215]
 offset_left = -122.0

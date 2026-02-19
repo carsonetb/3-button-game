@@ -243,14 +243,15 @@ offset_right = 741.0
 offset_bottom = 455.0
 
 [node name="Popup" type="Node2D" parent="." unique_id=507318729]
+process_mode = 1
 position = Vector2(1192, 704)
 
 [node name="Text" type="Label" parent="Popup" unique_id=1753371893]
 modulate = Color(0.24705882, 0.5686275, 0.8235294, 0)
 offset_left = 438.0
 offset_top = 285.0
-offset_right = 1097.0
-offset_bottom = 398.0
+offset_right = 706.0
+offset_bottom = 355.0
 theme_override_colors/font_shadow_color = Color(0.45840502, 0.45840508, 0.45840502, 0.8666667)
 theme_override_font_sizes/font_size = 30
 text = "Placeholder Text"

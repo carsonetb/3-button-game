@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="3ButtonGame"
-run/main_scene="uid://nj834utfqy6y"
+run/main_scene="uid://dbijcwoy7y16m"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
