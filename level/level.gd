@@ -60,8 +60,11 @@ func pause() -> void:
 	ui.display_pause()
 	get_tree().paused = true
 
-func _on_astroid_destroyed(worth: int) -> void:
-	player.upgrades.money += worth
+func _on_astroid_destroyed(astroid: Astroid, worth: int) -> void:
+	for i in range(int(astroid.worth)):
+		var money := Money.create(player)
+		add_child(money)
+		money.global_position = astroid.global_position + Vector2(randf_range(-20.0, 20.0), randf_range(-20.0, 20.0))
 
 func _on_astroid_timer_timeout() -> void:
 	var segment: int = randi_range(0, astroid_spawn.points.size() - 1)

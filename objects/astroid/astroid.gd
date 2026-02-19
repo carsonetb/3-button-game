@@ -3,7 +3,7 @@ class_name Astroid
 extends Area2D 
 
 signal hit
-signal destroyed(money: int)
+signal destroyed(astroid: Astroid, money: int)
 
 @export_tool_button("Regenerate") var tool_regenerate: Callable = generate_poly
 
@@ -14,6 +14,7 @@ signal destroyed(money: int)
 
 var velocity: Vector2 = Vector2.ZERO 
 var rot_vel: float = 0.0
+var worth: float = 0.0
 
 @onready var poly: Polygon2D = $Poly
 @onready var health: AstroidHealth = $Health
@@ -22,15 +23,16 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
+	generate_poly()
 	scale *= randf_range(Constants.ASTROID_MIN_SCALE, Constants.ASTROID_MAX_SCALE)
 	rotation = randf_range(0.0, TAU)
 	rot_vel = randf_range(0.0, deg_to_rad(Constants.ASTROID_MAX_ROT_VEL))
 	health.health *= scale.length()
-	var worth := (scale.length() - 0.4) * 20.0 * worth_multiplier
+	worth = (scale.length() - 0.4) * 20.0 * worth_multiplier
 	
 	await health.died 
 	
-	destroyed.emit(worth)
+	destroyed.emit(self, worth)
 	queue_free()
 
 func _process(delta: float) -> void:

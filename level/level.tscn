@@ -43,7 +43,7 @@ value = 3.0
 metadata/_custom_type_script = "uid://b315rtqgv5yb3"
 
 [sub_resource type="Resource" id="Resource_6gtgk"]
-resource_name = "Phase 2: 1 minute"
+resource_name = "Phase 2: 3 minutes"
 script = ExtResource("2_qohg2")
 name = "Phase 2"
 time = SubResource("Resource_44x8d")
@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
 [sub_resource type="Resource" id="Resource_7jqyl"]
 resource_name = "0 seconds"
 script = ExtResource("3_ktfr2")
-value = 0.1
+value = 0.13
 metadata/_custom_type_script = "uid://cw7swj2a2avhq"
 
 [sub_resource type="Resource" id="Resource_m5ivw"]
@@ -105,7 +105,7 @@ value = 2.0
 metadata/_custom_type_script = "uid://b315rtqgv5yb3"
 
 [sub_resource type="Resource" id="Resource_sui6v"]
-resource_name = "Phase 5: 5 minutes"
+resource_name = "Phase 5: 2 minutes"
 script = ExtResource("2_qohg2")
 name = "Phase 5"
 time = SubResource("Resource_m5ivw")
@@ -143,6 +143,14 @@ spawn_interval = SubResource("Resource_v4yay")
 events = Array[ExtResource("3_ivpvi")]([SubResource("Resource_ml0fe")])
 metadata/_custom_type_script = "uid://cbeoptvlu4nx4"
 
+[sub_resource type="Environment" id="Environment_0v1st"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.5
+glow_levels/2 = 0.4
+glow_levels/3 = 0.1
+glow_levels/4 = 0.0
+
 [node name="Level" type="Node2D" unique_id=248361577]
 script = ExtResource("1_7lnir")
 phases = Array[ExtResource("2_qohg2")]([SubResource("Resource_vkbyq"), SubResource("Resource_6gtgk"), SubResource("Resource_rhqlf"), SubResource("Resource_fm1jd"), SubResource("Resource_sui6v"), SubResource("Resource_o0wo3")])
@@ -178,6 +186,9 @@ closed = true
 [node name="AstroidTimer" type="Timer" parent="." unique_id=1742209031]
 wait_time = 3.0
 autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=224829713]
+environment = SubResource("Environment_0v1st")
 
 [connection signal="exit" from="UI" to="." method="_on_ui_exit"]
 [connection signal="request_upgrades" from="UI" to="." method="_on_ui_request_upgrades"]
