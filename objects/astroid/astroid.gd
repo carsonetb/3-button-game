@@ -48,6 +48,7 @@ func _ready() -> void:
 		get_parent().add_child(chunk)
 		chunk.scale = scale
 		chunk.global_position = global_position
+		chunk.rotation = rotation
 	
 	queue_free()
 
