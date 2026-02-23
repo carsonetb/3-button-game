@@ -166,6 +166,8 @@ shoot={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true
 viewport/hdr_2d=true
 anti_aliasing/quality/msaa_2d=3
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
